@@ -11,9 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Media Picker',
+      title: 'Ken Burns Slideshow',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        useMaterial3: false,
+        primarySwatch: Colors.purple,
       ),
       home: const MyHomePage(),
     );
@@ -38,9 +39,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Image Picker'),
+        title: const Text('Ken Burns Slideshow'),
       ),
-      body: Container(),
+      body: KenBurnsSlideshow.asset(
+        background: Colors.black,
+        foreground: Colors.black38,
+        images: const [
+          'assets/images/1.jpg',
+          'assets/images/2.jpg',
+          'assets/images/3.jpg',
+          'assets/images/4.jpg',
+          'assets/images/5.jpg',
+        ],
+      ),
     );
   }
 }
