@@ -1,0 +1,25 @@
+name: example
+description: Ken Burns Sideshow example
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <=3.10.1"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  ken_burns_slideshow:
+    path: ../
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
