@@ -9,6 +9,7 @@ class KenBurnsSlideshow extends StatelessWidget {
     this.foreground,
     this.duration,
     this.transitionDuration,
+    this.animationSequence,
   });
 
   KenBurnsSlideshow.asset({
@@ -18,6 +19,7 @@ class KenBurnsSlideshow extends StatelessWidget {
     this.foreground,
     this.duration,
     this.transitionDuration,
+    this.animationSequence,
   }) : images = images.map((assetName) => AssetImage(assetName)).toList();
 
   KenBurnsSlideshow.network({
@@ -27,6 +29,7 @@ class KenBurnsSlideshow extends StatelessWidget {
     this.foreground,
     this.duration,
     this.transitionDuration,
+    this.animationSequence,
   }) : images = images.map((url) => NetworkImage(url)).toList();
 
   KenBurnsSlideshow.memory({
@@ -36,6 +39,7 @@ class KenBurnsSlideshow extends StatelessWidget {
     this.foreground,
     this.duration,
     this.transitionDuration,
+    this.animationSequence,
   }) : images = images.map((bytes) => MemoryImage(bytes)).toList();
 
   KenBurnsSlideshow.cachedNetwork({
@@ -45,16 +49,27 @@ class KenBurnsSlideshow extends StatelessWidget {
     this.foreground,
     this.duration,
     this.transitionDuration,
+    this.animationSequence,
   }) : images = images.map((url) => CachedNetworkImageProvider(url)).toList();
 
+  final List<ImageProvider> images;
   final Color? background;
   final Color? foreground;
   final Duration? duration;
   final Duration? transitionDuration;
-  final List<ImageProvider> images;
+  final List<KenBurnsAnimation>? animationSequence;
 
   static Duration get _defaultDuration => const Duration(seconds: 5);
   static Duration get _defaultTransitionDuration => const Duration(seconds: 1);
+
+  static final List<KenBurnsAnimation> _defaultSequence = [
+    KenBurnsAnimation.leftToRight,
+    KenBurnsAnimation.rightToLeft,
+    KenBurnsAnimation.zoomOut,
+    KenBurnsAnimation.bottomToTop,
+    KenBurnsAnimation.topToBottom,
+    KenBurnsAnimation.zoomIn,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +85,7 @@ class KenBurnsSlideshow extends StatelessWidget {
             images: images,
             duration: duration ?? _defaultDuration,
             transitionDuration: transitionDuration ?? _defaultTransitionDuration,
+            animationSequence: animationSequence ?? _defaultSequence,
           ),
         ),
         Positioned.fill(

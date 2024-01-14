@@ -10,3 +10,5 @@ part 'src/ken_burns.dart';
 part 'src/decoration.dart';
 part 'src/slideshow.dart';
 part 'src/image.dart';
+part 'src/animation.dart';
+part 'src/data.dart';

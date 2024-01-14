@@ -8,12 +8,14 @@ class _SlideShowImage extends StatefulWidget {
     required this.image,
     required this.duration,
     required this.transitionDuration,
+    required this.animation,
   });
   final double height;
   final double width;
   final ImageProvider image;
   final Duration duration;
   final Duration transitionDuration;
+  final KenBurnsAnimation animation;
 
   @override
   State<_SlideShowImage> createState() => _SlideShowImageState();
@@ -21,43 +23,52 @@ class _SlideShowImage extends StatefulWidget {
 
 class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderStateMixin {
 
-  late AnimationController _scaleController;
-  late Animation<double> _scaleAnimation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
-  Duration get _duration => widget.duration + widget.transitionDuration;
+  late _KenBurnsAnimationData data;
+
+  Duration get _duration => (data.duration??widget.duration) + widget.transitionDuration;
 
   @override
   void initState() {
+    data = _KenBurnsAnimationData.fromAnimation(widget.animation);
     super.initState();
     _initScaleAnimationController();
-    _scaleController.forward();
+    _controller.forward();
   }
 
   void _initScaleAnimationController() {
-    _scaleController = AnimationController(
+    _controller = AnimationController(
       vsync: this,
       duration: _duration,
     );
 
-    _scaleAnimation = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 1.2, end: 1), weight: 1),
-    ]).animate(_scaleController);
+    _animation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween(begin: 0, end: 1), weight: 1),
+    ]).animate(CurvedAnimation(
+        parent: _controller,
+        curve: data.curve,
+    ));
   }
 
   @override
   void dispose() {
-    _scaleController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _scaleAnimation,
+      animation: _animation,
       builder: (context, child) {
-        return Transform.scale(
-          scale: _scaleAnimation.value,
-          child: child,
+        return Transform.translate(
+          offset: data.getTranslationValue(_animation.value, widget.width, widget.height),
+          child: Transform.scale(
+            scale: data.getScaleValue(_animation.value),
+            child: child,
+          ),
         );
       },
       child: Image(

@@ -3,12 +3,14 @@ part of ken_burns_slideshow;
 class _Slideshow extends StatefulWidget {
   const _Slideshow({
     required this.images,
-    required this.duration,
     required this.transitionDuration,
-  });
+    required this.duration,
+    required this.animationSequence,
+  }) : assert(images.length > 0 && animationSequence.length > 0);
   final List<ImageProvider> images;
-  final Duration duration;
   final Duration transitionDuration;
+  final Duration duration;
+  final List<KenBurnsAnimation> animationSequence;
 
   @override
   State<_Slideshow> createState() => _SlideshowState();
@@ -19,6 +21,7 @@ class _SlideshowState extends State<_Slideshow> {
   late Timer _timer;
 
   int get _imageIndex => _currentIndex % widget.images.length;
+  int get _animationIndex => _currentIndex % widget.animationSequence.length;
 
   @override
   void initState() {
@@ -59,6 +62,7 @@ class _SlideshowState extends State<_Slideshow> {
             image: widget.images[_imageIndex],
             duration: widget.duration,
             transitionDuration: widget.transitionDuration,
+            animation: widget.animationSequence[_animationIndex]
           ),
         );
       }
