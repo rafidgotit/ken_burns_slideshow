@@ -1,6 +1,6 @@
 name: ken_burns_slideshow
 description: A Flutter Package that slideshows images along with Ken Burns effects
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/rafidgotit/ken_burns_slideshow
 
 environment:
@@ -17,5 +17,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
-flutter:

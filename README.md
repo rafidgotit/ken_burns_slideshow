@@ -1,6 +1,6 @@
 # ken_burns_slideshow
 
-[![Build](https://img.shields.io/badge/pub-v1.0.0-%23009F00)](https://pub.dev/packages/ken_burns_slideshow)
+[![Build](https://img.shields.io/badge/pub-v1.0.1-%23009F00)](https://pub.dev/packages/ken_burns_slideshow)
 [![Build](https://img.shields.io/badge/licence-MIT-%23f16f12)](https://github.com/rafidgotit/ken_burns_slideshow/blob/master/LICENSE)
 
 A Flutter library for creating Ken Burns effect slideshows.
@@ -20,7 +20,7 @@ Add the following line to your `pubspec.yaml` file:
 ```yaml
 ken_burns_slideshow: $latest_version
 ```
-The latest version of the package is   [![Build](https://img.shields.io/badge/pub-v1.0.0-%23009F00)](https://pub.dev/packages/ken_burns_slideshow)
+The latest version of the package is   [![Build](https://img.shields.io/badge/pub-v1.0.1-%23009F00)](https://pub.dev/packages/ken_burns_slideshow)
 
 ## Usage
 Firstly, import in dart code:
