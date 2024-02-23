@@ -31,7 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -69,19 +68,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 1,
                     ),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                   child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         'Ken Burns\nSlideshow',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          height: 2,
-                          letterSpacing: 1.88
-                        ),
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            height: 2,
+                            letterSpacing: 1.88),
                       )
                     ],
                   ),

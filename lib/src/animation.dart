@@ -17,7 +17,7 @@ class KenBurnsAnimation {
     this.translateYEnd = 0,
     this.curve = Curves.linear,
     this.duration,
-  }) : assert(translateXBegin <= (scaleBegin / 2)),
+  })  : assert(translateXBegin <= (scaleBegin / 2)),
         assert(translateXEnd <= (scaleEnd / 2)),
         assert(translateYBegin <= (scaleBegin / 2)),
         assert(translateYEnd <= (scaleEnd / 2));

@@ -34,14 +34,16 @@ class _SlideShowImage extends StatefulWidget {
   State<_SlideShowImage> createState() => _SlideShowImageState();
 }
 
-class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderStateMixin {
+class _SlideShowImageState extends State<_SlideShowImage>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
   late _KenBurnsAnimationData data;
 
   /// Gets the effective duration, considering animation duration and transition duration.
-  Duration get _duration => (data.duration ?? widget.duration) + widget.transitionDuration;
+  Duration get _duration =>
+      (data.duration ?? widget.duration) + widget.transitionDuration;
 
   @override
   void initState() {
@@ -78,7 +80,8 @@ class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderSta
       animation: _animation,
       builder: (context, child) {
         return Transform.translate(
-          offset: data.getTranslationValue(_animation.value, widget.width, widget.height),
+          offset: data.getTranslationValue(
+              _animation.value, widget.width, widget.height),
           child: Transform.scale(
             scale: data.getScaleValue(_animation.value),
             child: child,

@@ -25,15 +25,15 @@ class _KenBurnsAnimationData extends KenBurnsAnimation {
     required Curve curve,
     Duration? duration,
   }) : super(
-    scaleBegin: scaleBegin,
-    scaleEnd: scaleEnd,
-    translateXBegin: translateXBegin,
-    translateXEnd: translateXEnd,
-    translateYBegin: translateYBegin,
-    translateYEnd: translateYEnd,
-    curve: curve,
-    duration: duration,
-  );
+          scaleBegin: scaleBegin,
+          scaleEnd: scaleEnd,
+          translateXBegin: translateXBegin,
+          translateXEnd: translateXEnd,
+          translateYBegin: translateYBegin,
+          translateYEnd: translateYEnd,
+          curve: curve,
+          duration: duration,
+        );
 
   /// Gets the scale value based on the animation progress.
   ///
@@ -47,16 +47,20 @@ class _KenBurnsAnimationData extends KenBurnsAnimation {
   /// - [animationValue]: The progress of the animation (0.0 to 1.0).
   /// - [width]: The width of the target area.
   /// - [height]: The height of the target area.
-  Offset getTranslationValue(double animationValue, double width, double height) {
-    var translateX = translateXBegin + (translateXEnd - translateXBegin) * animationValue;
-    var translateY = translateYBegin + (translateYEnd - translateYBegin) * animationValue;
+  Offset getTranslationValue(
+      double animationValue, double width, double height) {
+    var translateX =
+        translateXBegin + (translateXEnd - translateXBegin) * animationValue;
+    var translateY =
+        translateYBegin + (translateYEnd - translateYBegin) * animationValue;
     return Offset(translateX * width, translateY * height);
   }
 
   /// Creates a _KenBurnsAnimationData instance from a [KenBurnsAnimation].
   ///
   /// Useful for converting an external KenBurnsAnimation instance to _KenBurnsAnimationData.
-  factory _KenBurnsAnimationData.fromAnimation(KenBurnsAnimation kenBurnsAnimation) {
+  factory _KenBurnsAnimationData.fromAnimation(
+      KenBurnsAnimation kenBurnsAnimation) {
     return _KenBurnsAnimationData(
       scaleBegin: kenBurnsAnimation.scaleBegin,
       scaleEnd: kenBurnsAnimation.scaleEnd,

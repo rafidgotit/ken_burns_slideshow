@@ -2,7 +2,6 @@ part of ken_burns_slideshow;
 
 /// A widget representing a Ken Burns effect slideshow.
 class KenBurnsSlideshow extends StatelessWidget {
-
   /// Creates a KenBurnsSlideshow widget.
   ///
   /// - [images]: The list of ImageProvider for the slideshow.
@@ -140,7 +139,8 @@ class KenBurnsSlideshow extends StatelessWidget {
           child: _Slideshow(
             images: images,
             duration: duration ?? _defaultDuration,
-            transitionDuration: transitionDuration ?? _defaultTransitionDuration,
+            transitionDuration:
+                transitionDuration ?? _defaultTransitionDuration,
             animationSequence: animationSequence ?? _defaultSequence,
           ),
         ),
