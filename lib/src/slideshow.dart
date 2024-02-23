@@ -1,5 +1,6 @@
 part of ken_burns_slideshow;
 
+/// An internal StatefulWidget for handling the Ken Burns slideshow.
 class _Slideshow extends StatefulWidget {
   const _Slideshow({
     required this.images,
@@ -7,9 +8,17 @@ class _Slideshow extends StatefulWidget {
     required this.duration,
     required this.animationSequence,
   }) : assert(images.length > 0 && animationSequence.length > 0);
+
+  /// The list of image providers for the slideshow.
   final List<ImageProvider> images;
+
+  /// The duration of the transition between images.
   final Duration transitionDuration;
+
+  /// The duration of the individual image display.
   final Duration duration;
+
+  /// The sequence of Ken Burns animations to be applied to the images.
   final List<KenBurnsAnimation> animationSequence;
 
   @override
@@ -20,7 +29,10 @@ class _SlideshowState extends State<_Slideshow> {
   int _currentIndex = 0;
   late Timer _timer;
 
+  /// Gets the current index of the displayed image.
   int get _imageIndex => _currentIndex % widget.images.length;
+
+  /// Gets the current index of the applied Ken Burns animation.
   int get _animationIndex => _currentIndex % widget.animationSequence.length;
 
   @override
@@ -29,12 +41,14 @@ class _SlideshowState extends State<_Slideshow> {
     _startTimer();
   }
 
+  /// Starts the timer for transitioning to the next image.
   void _startTimer() {
     _timer = Timer.periodic(widget.duration, (timer) {
       _showNextImage();
     });
   }
 
+  /// Shows the next image in the slideshow.
   void _showNextImage() {
     setState(() => _currentIndex++);
   }
@@ -62,10 +76,10 @@ class _SlideshowState extends State<_Slideshow> {
             image: widget.images[_imageIndex],
             duration: widget.duration,
             transitionDuration: widget.transitionDuration,
-            animation: widget.animationSequence[_animationIndex]
+            animation: widget.animationSequence[_animationIndex],
           ),
         );
-      }
+      },
     );
   }
 }

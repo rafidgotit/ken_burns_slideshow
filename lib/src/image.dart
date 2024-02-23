@@ -1,5 +1,6 @@
 part of ken_burns_slideshow;
 
+/// An internal StatefulWidget for handling the Ken Burns effect on slideshow images.
 class _SlideShowImage extends StatefulWidget {
   const _SlideShowImage({
     super.key,
@@ -10,11 +11,23 @@ class _SlideShowImage extends StatefulWidget {
     required this.transitionDuration,
     required this.animation,
   });
+
+  /// The height of the image.
   final double height;
+
+  /// The width of the image.
   final double width;
+
+  /// The image provider.
   final ImageProvider image;
+
+  /// The duration of the individual image display.
   final Duration duration;
+
+  /// The duration of the transition between images.
   final Duration transitionDuration;
+
+  /// The Ken Burns animation parameters for the image.
   final KenBurnsAnimation animation;
 
   @override
@@ -22,13 +35,13 @@ class _SlideShowImage extends StatefulWidget {
 }
 
 class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderStateMixin {
-
   late AnimationController _controller;
   late Animation<double> _animation;
 
   late _KenBurnsAnimationData data;
 
-  Duration get _duration => (data.duration??widget.duration) + widget.transitionDuration;
+  /// Gets the effective duration, considering animation duration and transition duration.
+  Duration get _duration => (data.duration ?? widget.duration) + widget.transitionDuration;
 
   @override
   void initState() {
@@ -38,6 +51,7 @@ class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderSta
     _controller.forward();
   }
 
+  /// Initializes the scale animation controller.
   void _initScaleAnimationController() {
     _controller = AnimationController(
       vsync: this,
@@ -47,8 +61,8 @@ class _SlideShowImageState extends State<_SlideShowImage> with TickerProviderSta
     _animation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0, end: 1), weight: 1),
     ]).animate(CurvedAnimation(
-        parent: _controller,
-        curve: data.curve,
+      parent: _controller,
+      curve: data.curve,
     ));
   }
 
